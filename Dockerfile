@@ -6,6 +6,6 @@ COPY . .
 RUN npm ci
 RUN npm run build
 
-FROM nginx:stable
+FROM nginxinc/nginx-unprivileged:alpine3.21-perl
 
 COPY --from=builder /app/build /usr/share/nginx/html
