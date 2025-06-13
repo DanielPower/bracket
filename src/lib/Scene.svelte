@@ -5,13 +5,11 @@
 	import { faceplate } from '$lib/brackets/faceplate';
 
 	const material = new MeshStandardMaterial({
-		color: 0xff0090,
-		roughness: 0.2,
-		metalness: 0.0,
+		color: 0xd153b5,
 		flatShading: true
 	});
 
-	let faceplateWidth = $state(1);
+	let { faceplateWidth } = $props();
 	let mesh: Mesh | null = $state(null);
 
 	$effect(() => {
@@ -20,7 +18,6 @@
 		geometry.setAttribute('position', new BufferAttribute(manifoldMesh.vertProperties, 3));
 		geometry.setIndex(new BufferAttribute(manifoldMesh.triVerts, 1));
 		geometry.computeVertexNormals();
-		console.log('mesh');
 
 		mesh = new Mesh(geometry, material);
 	});
@@ -32,8 +29,8 @@
 	<OrbitControls />
 </T.OrthographicCamera>
 
-<T.AmbientLight intensity={0.4} />
-<T.DirectionalLight position={[1, 2, 5]} />
+<T.AmbientLight intensity={0.5} />
+<T.DirectionalLight position={[1, 2, 5]} intensity={2} />
 
 <T.Mesh is={mesh} />
 
